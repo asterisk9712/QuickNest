@@ -10,8 +10,13 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "extra": {
+        "expoPublicAppwriteEndpoint": "https://cloud.appwrite.io/v1",
+        "expoPublicAppwriteProjectId": "67aa3a7900305fbdf004"
+      }
     },
+
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.yourname.quicknest2"
@@ -38,11 +43,7 @@
       "favicon": "./assets/favicon.png"
     },
     "assetBundlePatterns": ["**/*"],
-    "scheme": "quicknest2",
-    "extra": {
-      "eas": {
-        "projectId": "your-project-id"
-      }
-    }
+    "scheme": "quicknest2"
+    
   }
 }

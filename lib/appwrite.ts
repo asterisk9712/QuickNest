@@ -2,12 +2,13 @@ import { Client, Account, Avatars } from "react-native-appwrite";
 import * as Linking from "expo-linking";
 
 export const config = {
+  platform : 'com.jsm.quicknest',
   endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!,
 };
 
 export const client = new Client();
-client.setEndpoint(config.endpoint).setProject(config.projectId);
+client.setEndpoint(config.endpoint).setProject(config.projectId).setPlatform(config.platform);
 
 export const avatar = new Avatars(client);
 export const account = new Account(client);
@@ -17,11 +18,15 @@ export async function login() {
   try {
     const redirectUri = Linking.createURL("/auth/callback"); // Ensure valid redirect URI
 
+    console.log("Redirect URI:", redirectUri); // Debugging: Check if redirect URI is valid
+
     // ✅ Open Appwrite OAuth2 Session with Google
     await account.createOAuth2Session("google", redirectUri);
 
     // ✅ Fetch the current session
     const session = await account.getSession("current");
+
+    console.log("Session:", session); // Debugging: Check if session is created
 
     if (!session) {
       throw new Error("Failed to create a session");
